@@ -4,7 +4,7 @@
 
 Ramadan Marathons is a contests series that takes place during the month of Ramadan.
 
-This is the challenges that are going to be solved in this repo:
+This repo contains solutions to the problems of the following marathons:
 
 - [Suez Canal Ramadan Marathons](https://codeforces.com/group/nm0n1RosrQ/blog)
 - [Assuit Ramadan Marathons](https://codeforces.com/group/MEqF8b6wBT/contests)
