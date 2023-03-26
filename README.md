@@ -22,6 +22,6 @@ You can add another marathon to this repo by creating a new folder with the name
 6. Create a pull request.
 
 
-This steps to how to contribute to this repo:
+### This steps to how to contribute to this repo:
 
 https://user-images.githubusercontent.com/76134299/227793797-075dfabd-62c4-4df4-bd19-a7988edca3e2.mp4
