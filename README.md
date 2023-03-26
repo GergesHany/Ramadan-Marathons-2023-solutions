@@ -1,6 +1,16 @@
 # Ramadan Marathons 2023 solutions
 
-This repository contains solutions to the problems of the 2023 Ramadan Marathons.
+## This repository contains solutions to the problems of the 2023 Ramadan Marathons.
+
+Ramadan Marathons is a contests series that takes place during the month of Ramadan.
+
+This is the challenges that are going to be solved in this repo:
+
+- [Suez Canal Ramadan Marathons](https://codeforces.com/group/nm0n1RosrQ/blog)
+- [Assuit Ramadan Marathons](https://codeforces.com/group/MEqF8b6wBT/contests)
+- [Minya Ramadan Marathons](https://codeforces.com/group/aJsGbtPwRo/contests)
+
+You can add another marathon to this repo by creating a new folder with the name of the marathon and adding the problems to it.
 
 ## How to contribute
 
