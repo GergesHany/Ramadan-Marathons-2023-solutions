@@ -20,27 +20,35 @@ int tcase = 0;
 /*
  * Another buggy code by _AhmedMohamed_
  */
+
+map<string, vector<int>> mp;
+int get_diff(string nextday, int myh, int mym, int mys)
+{
+    int hh = mp[nextday][0];
+    int mm = mp[nextday][1];
+    int ss = mp[nextday][2];
+    int iftar = hh * 3600 + mm * 60 + ss;
+    int current_time = myh * 3600 + mym * 60 + mys;
+    int rem = (23 * 60 * 60 + 59 * 60 + 60) - current_time;
+    return rem + iftar;
+}
 void solve()
 {
-    map<string, vector<int>> mp;
+    string s;
     char c;
+    int t, q;
     for (int i = 0; i < 7; i++) {
-        string s;
         cin >> s;
         for (int j = 0; j < 3; j++) {
-            int t;
             cin >> t;
             mp[s].pb(t);
-            if (j != 2)
-                cin >> c;
+            if (j != 2) cin >> c;
         }
     }
-    int q;
     cin >> q;
     while (q--) {
-        string s;
-        cin >> s;
         int hour, min, sc;
+        cin >> s;
         cin >> hour >> c;
         cin >> min >> c;
         cin >> sc;
@@ -48,120 +56,78 @@ void solve()
             int hh = mp["Saturday"][0];
             int mm = mp["Saturday"][1];
             int ss = mp["Saturday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Sunday"][0];
-                mm = mp["Sunday"][1];
-                ss = mp["Sunday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Sunday", hour, min, sc) << el;
             }
         } else if (s == "Sunday") {
             int hh = mp["Sunday"][0];
             int mm = mp["Sunday"][1];
             int ss = mp["Sunday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Monday"][0];
-                mm = mp["Monday"][1];
-                ss = mp["Monday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Monday", hour, min, sc) << el;
             }
         } else if (s == "Monday") {
             int hh = mp["Monday"][0];
             int mm = mp["Monday"][1];
             int ss = mp["Monday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Tuesday"][0];
-                mm = mp["Tuesday"][1];
-                ss = mp["Tuesday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Tuesday", hour, min, sc) << el;
             }
         } else if (s == "Tuesday") {
             int hh = mp["Tuesday"][0];
             int mm = mp["Tuesday"][1];
             int ss = mp["Tuesday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Wednesday"][0];
-                mm = mp["Wednesday"][1];
-                ss = mp["Wednesday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Wednesday", hour, min, sc) << el;
             }
         } else if (s == "Wednesday") {
             int hh = mp["Wednesday"][0];
             int mm = mp["Wednesday"][1];
             int ss = mp["Wednesday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Thursday"][0];
-                mm = mp["Thursday"][1];
-                ss = mp["Thursday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Thursday", hour, min, sc) << el;
             }
         } else if (s == "Thursday") {
             int hh = mp["Thursday"][0];
             int mm = mp["Thursday"][1];
             int ss = mp["Thursday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Friday"][0];
-                mm = mp["Friday"][1];
-                ss = mp["Friday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Friday", hour, min, sc) << el;
             }
         } else if (s == "Friday") {
             int hh = mp["Friday"][0];
             int mm = mp["Friday"][1];
             int ss = mp["Friday"][2];
-            int tot1 = hh * 3600 + mm * 60 + ss;
-            int nwtot = hour * 3600 + min * 60 + sc;
-            if (nwtot < tot1) {
-                cout << tot1 - nwtot << el;
+            int iftar = hh * 3600 + mm * 60 + ss;
+            int current_time = hour * 3600 + min * 60 + sc;
+            if (current_time < iftar) {
+                cout << iftar - current_time << el;
             } else {
-                hh = mp["Saturday"][0];
-                mm = mp["Saturday"][1];
-                ss = mp["Saturday"][2];
-                tot1 = hh * 3600 + mm * 60 + ss;
-                nwtot = hour * 3600 + min * 60 + sc;
-                int rem = (23 * 60 * 60 + 59 * 60 + 60) - nwtot;
-                cout << rem + tot1 << el;
+                cout << get_diff("Saturday", hour, min, sc) << el;
             }
         }
     }
