@@ -40,40 +40,11 @@ template < typename T = int > ostream& operator << (ostream &out, const vector <
     return out;
 }
  
-struct offer{
-    int cyan , mag , cost;
-};
- 
-ll n , ra, rb;
-double Nesba;
-vector < offer > v;
-vector < vector < vector < ll > > > dp;
- 
-ll min_cost(int curr , ll c , ll m){
-    if(curr == n)
-        return (double)c / (double)m == Nesba? 0 : 1e9;
- 
-    ll &ret = dp[curr][c][m];
-    if(~ret)
-        return ret;
- 
-    ret = v[curr].cost + min_cost(curr + 1 , c + v[curr].cyan , m + v[curr].mag);
-    ret = min(ret , min_cost(curr + 1 , c , m));
-    return ret;
-}
+
  
 void Solve(){
  
-    cin >> n >> ra >> rb;
-    v.assign(n , {0,  0, 0});
-    dp.assign(45 , vector < vector < ll > > (410 , vector < ll > (410 , -1)));
-    Nesba = (double)ra / (double)rb;
- 
-    for(auto &i : v)
-        cin >> i.cyan >> i.mag >> i.cost;
- 
-    ll ans = min_cost(0 , 0 , 0);
-    cout << ((ans >= 1e9)? -1 : ans) << dl;
+
 }
  
 int main(){
