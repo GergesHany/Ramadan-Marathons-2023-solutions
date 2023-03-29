@@ -56,7 +56,7 @@ void Accepted(){
     vec.push_back(v);
   }
 
-  // rotete the vector
+  // rotate the vector
   ll rotate[5][n];
   for (int i = 0; i < n; i++){
     for (int j = 0; j < 5; j++){
