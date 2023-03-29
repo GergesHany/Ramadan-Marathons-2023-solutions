@@ -32,72 +32,54 @@ template < typename T = int > ostream& operator << (ostream &out, const vector <
     return out;
 }
 
-// This function takes a vector of integers and returns a vector
-// containing the indices of the next greater element for each element in the input vector
-template < typename T = int > vector < T > nextGreaterelement(vector < T >& nums) {
-    int n = nums.size();
-    vector < T > res(n);
-    stack < int > st;
-    // loop through the input vector from the end
-    for (int i = n - 1; i >= 0; i--) {
-        // keep popping elements from the stack until we find an element greater than the current element
-        while (!st.empty() && nums[st.top()] <= nums[i]) st.pop();
-        // if the stack is empty, there is no greater element to the right of the current element
-        res[i] = (st.empty() ? -1 : st.top());
-        // push the current element's index onto the stack
-        st.push(i);
-    }
-    return res;
-}
+// This program solves a problem using dynamic programming and DFS.
+// It takes inputs n and k, and the colors of the nodes.
+// It outputs the result of the computation mod Mod.
 
-// This function takes a vector of integers and returns a vector
-// containing the indices of the previous greater element for each element in the input vector
-template < typename T = int > vector < T > prevGreaterelement(vector < T >& nums) {
-    int n = nums.size();
-    vector < T > res(n);
-    stack < int > st;
-    // loop through the input vector from the start
-    for (int i = 0; i < n; i++) {
-        // keep popping elements from the stack until we find an element greater than the current element
-        while (!st.empty() && nums[st.top()] <= nums[i]) st.pop();
-        // if the stack is empty, there is no greater element to the left of the current element
-        res[i] = (st.empty() ? -1 : st.top());
-        // push the current element's index onto the stack
-        st.push(i);
-    }
-    return res;
+int n, k;  // n is the number of nodes in the tree, k is the number of colored nodes
+vector < int > col;  // vector to store the color of each node
+vector < vector < ll > > dp, adj;  // 2D vector for dynamic programming and adjacency list for graph
+ 
+void dfs(int u, int p){
+    // Depth-first search to compute dynamic programming values
+    for(auto& v : adj[u]){
+        if(v == p) continue;  // skip parent node
+        dfs(v, u);
+        // compute dynamic programming values for each node
+        dp[u][1] = (dp[u][1] * (dp[v][2] + dp[v][3])) % Mod;
+        dp[u][2] = (dp[u][2] * (dp[v][1] + dp[v][3])) % Mod;
+        dp[u][3] = (dp[u][3] * (dp[v][1] + dp[v][2])) % Mod;
+    }        
 }
-
-void Solve() {
-    int n;
-    cin >> n;
-    vector < ll > a(n);
-    cin >> a;
-    // get vectors of the next greater element and the previous greater element for the input vector
-    vector < ll > nxt = nextGreaterelement(a);
-    vector < ll > prv = prevGreaterelement(a);
-    ll ans = 0;
-    // loop through the input vector
-    for (int i = 0; i < n; i++) {
-        // if the current element is equal to n, skip it
-        if (a[i] == n) continue;
-        // get the index of the next greater element and the index of the previous greater element
-        ll currnxt = ~nxt[i] ? nxt[i] : i;
-        ll currprv = ~prv[i] ? prv[i] : i;
-        // calculate the distance between the current element and the next greater element,
-        // and the distance between the current element and the previous greater element,
-        // and add them together
-        ans = max(ans, (currnxt - i) + (i - currprv));
+ 
+void Solve(){
+    // main function to solve the problem
+    cin >> n >> k;
+    // initialize vectors for colors, dynamic programming, and adjacency list
+    col = vector < int > (n + 5);
+    dp = vector < vector < ll > > (n + 5, vector < ll > (4));
+    adj = vector < vector < ll > > (n + 5);
+    // read input for edges
+    for(int i = 0, u, v; i < n - 1 && cin >> u >> v; i++)
+        adj[u].push_back(v), adj[v].push_back(u);
+    // read input for colors
+    for(int i = 0, x, c; i < k && cin >> x >> c; i++)
+        col[x] = c;
+    // initialize dynamic programming values for each node
+    for(int i = 1; i <= n; i++){
+        if(col[i]) dp[i][col[i]] = 1;
+        else dp[i] = vector < ll > (4, 1);
     }
-    // output the answer
-    cout << ans << '\n';
+    // compute dynamic programming values for the tree
+    dfs(1, -1);
+    // output the result mod Mod
+    cout << (dp[1][1] + dp[1][2] + dp[1][3]) % Mod << '\n';
 }
-
 
 int main(){
     ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int test_cases = 1;
-    cin >> test_cases;
+    // cin >> test_cases;
     for(int tc = 1; tc <= test_cases; tc++){
         // cout << "Case #" << tc << ": ";
         Solve();
