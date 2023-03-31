@@ -88,7 +88,7 @@ void Accepted(){
       // update the previous index to be the current index + 1  
       // to search for the next target value from the next index
       // because if the prev value is smaller than or equal to the current value
-      // then the target value of the current value will be greater than the target value of the prev value
+      // then the target value of the current value will be greater than or equal the target value of the prev value
       // so we can search for the next target value from the next index
       prev = Idx + 1;
     }
