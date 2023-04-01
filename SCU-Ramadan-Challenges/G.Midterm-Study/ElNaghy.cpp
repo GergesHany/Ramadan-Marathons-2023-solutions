@@ -84,6 +84,7 @@ void solve()
   cin>>k;
   cin.ignore();
   string s;   getline(cin, s);
+   // add your words in vec
   for(int i = 0; i < s.size(); i++){
     string temp = "";
     while(i < s.size() && s[i] != ' ' and s[i] != '.'){
