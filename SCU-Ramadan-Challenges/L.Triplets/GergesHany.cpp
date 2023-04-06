@@ -49,11 +49,8 @@ void Accepted(){
 
   int n;
   cin >> n;
-
   // the size of the freq is 2 * (max range of v[i]) because we can have negative numbers
-
   ll mp[2 * N + 10] = {0};
-  
   vector < int > vec(n);
   set < tuple < int, int, int > > ans;
   for(auto &x : vec) cin >> x, mp[x + N]++;
