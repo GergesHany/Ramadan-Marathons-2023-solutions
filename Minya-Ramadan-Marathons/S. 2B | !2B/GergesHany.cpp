@@ -59,7 +59,6 @@ void Accepted(){
   ll prefix_one = 0;
   ll suffix_one = count(all(a), 1);
   
-
   for (int i = 0; i < n - 1; i++){
     if (a[i]) prefix_one++;
     if (a[i]) suffix_one--;
